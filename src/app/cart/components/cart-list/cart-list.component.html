@@ -1,0 +1,14 @@
+<p-toggleButton
+  *ngIf="productsInCartSum; else empty"
+  [(ngModel)]="checked"
+  onIcon="pi pi-shopping-cart"
+  offIcon="pi pi-times"
+  onLabel="Cart {{ productsInCartSum }}"
+  offLabel="Cart {{ productsInCartSum }}"
+></p-toggleButton>
+
+<div *ngIf="!checked">item</div>
+
+<ng-template #empty>
+  <p-button label="Cart Empty"></p-button>
+</ng-template>

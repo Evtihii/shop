@@ -1,0 +1,23 @@
+<p-card
+  header="{{ product.title }}"
+  subheader="Card Subheader"
+  styleClass="p-card-shadow"
+>
+  <ng-template pTemplate="header">
+    <div class="image" style="background-image: url({{product.thumbnail}});"></div>
+  </ng-template>
+  <p class="description">
+    {{ product.description }}
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Buy"
+      icon="pi pi-shopping-cart"
+      (click)="onAddToCart(product)"
+    ></p-button>
+  </ng-template>
+</p-card>
+
+<p-toast></p-toast>
+
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Product, ProductRequest } from 'src/app/product/models/product.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((products: any) => { //what the hell ProductRequest
+    this.productService.getProducts().pipe(take(1)).subscribe((products: any) => { //what the hell ProductRequest
       this.products = products.products; 
     });
   }

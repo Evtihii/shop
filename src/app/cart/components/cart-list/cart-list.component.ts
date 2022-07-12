@@ -16,6 +16,10 @@ export class CartListComponent implements OnInit {
     this.cart.productsInCart?.subscribe(e => this.productsInCart = e)
   }
 
+  ngOnDestroy(): void {
+    this.cart.productsInCart?.unsubscribe();
+  }
+
   get productsInCartSum() {
     return this.productsInCart.length;
   }

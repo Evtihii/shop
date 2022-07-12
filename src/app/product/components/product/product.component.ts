@@ -11,6 +11,10 @@ import { Product } from 'src/app/product/models/product.model';
 })
 export class ProductComponent implements OnInit {
   @Input() product!: Product;
+
+  // этот компонент не является владельцем данных, выше у него инпут и он получает данные от родителя
+  // зачем позволять компоненту выполнять добавление продукта в корзину
+  // я бы попросил это сделать родителя и тогда, возможно, тут не было бы зависимостей
   constructor(private messageService: MessageService, private cart: CartService) {}
 
   ngOnInit(): void {}

@@ -7,7 +7,7 @@
   offLabel="Cart {{ productsInCartSum }}"
 ></p-toggleButton>
 
-<div *ngIf="!checked">item</div>
+<div *ngIf="!checked">{{ productsInCart }}</div>
 
 <ng-template #empty>
   <p-button label="Cart Empty"></p-button>

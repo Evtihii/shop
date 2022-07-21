@@ -5,6 +5,7 @@
 >
   <ng-template pTemplate="header">
     <div class="image" style="background-image: url({{product.thumbnail}});"></div>
+    {{product.id}}
   </ng-template>
   <p class="description">
     {{ product.description }}
@@ -13,7 +14,8 @@
     <p-button
       label="Buy"
       icon="pi pi-shopping-cart"
-      (click)="onAddToCart(product)"
+      (click)="onAddToCart()"
+      [disabled]="product.stock === 0"
     ></p-button>
   </ng-template>
 </p-card>

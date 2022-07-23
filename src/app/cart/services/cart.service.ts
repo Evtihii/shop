@@ -15,26 +15,44 @@ export class CartService {
 
   cartItems: Product[] = [];
 
-  constructor(private http: HttpClient, private msgServ: MessageService) {}
+  constructor() {}
 
   addToCart(product: Product) {
-    let quantity = 1;
     this.productsInCart$.pipe(take(1)).subscribe((arr) => {
       let alreadyInCart = arr.filter((el) => el.product.id === product.id);
+
       if (!alreadyInCart.length) {
         this.productsInCart$.next([
           ...this.productsInCart$.value,
           {
             product,
-            quantity: quantity,
+            quantity: 1,
           },
         ]);
       } else {
-        arr.map((obj) => obj.quantity++);
+        arr
+          .filter((el) => product.id === el.product.id)
+          .map((obj) => obj.quantity++);
       }
     });
+  }
 
-    this.productsInCart$.pipe(take(1)).subscribe((e) => console.log(e));
+  totalCost() {
+    this.productsInCart$.pipe(take(1)).subscribe((productsInCart) => {
+      //productsInCart.reduce()
+    })
+  }
+
+  onQuantityIncrease(product: ProductsInCart) {
+    return product.quantity++;
+  }
+
+  onQuantityDecrease(product: ProductsInCart) {
+    return product.quantity--;
+  }
+
+  onDeleteItem(product: ProductsInCart) {
+    this.productsInCart$.pipe(take(1)).subscribe((arr) => arr.splice(arr.indexOf(product), 1))
   }
 
   totalCart() {

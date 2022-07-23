@@ -8,6 +8,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     MenuModule,
     ToggleButtonModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TableModule
   ],
   declarations: [],
   exports: [
@@ -28,7 +30,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     MenuModule,
     ToggleButtonModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TableModule
   ],
 })
 export class SharedModule {}

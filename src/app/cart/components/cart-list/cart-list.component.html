@@ -7,7 +7,23 @@
   offLabel="Cart {{ productsInCartSum }}"
 ></p-toggleButton>
 
-<div *ngIf="!checked">{{ productsInCart }}</div>
+<p-table  [ngClass]="{visible: !checked}" *ngIf="!checked" [value]="productsInCart" class="cart absolute"  responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Title</th>
+          <th>Quantity</th>
+          <th>Price</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr app-cart-item [product]="product"></tr>  
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+          In total there are {{productsInCart ? productsInCart.length : 0 }} products.
+      </div>
+  </ng-template>
+</p-table>
 
 <ng-template #empty>
   <p-button label="Cart Empty"></p-button>

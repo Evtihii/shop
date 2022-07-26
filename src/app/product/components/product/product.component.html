@@ -4,20 +4,22 @@
   styleClass="p-card-shadow"
 >
   <ng-template pTemplate="header">
-    <div class="image" style="background-image: url({{product.thumbnail}});"></div>
+    <div appHoverProduct class="image" style="background-image: url({{product.thumbnail}});"></div>
   </ng-template>
-  <p class="description">
+  <p class="description" appHiglight>
     {{ product.description }}
   </p>
-  <ng-template pTemplate="footer">
+  <ng-template pTemplate="footer" >
     <p-button
       label="Buy"
       icon="pi pi-shopping-cart"
-      (click)="onAddToCart(product)"
+      (click)="onAddToCart()"
+      [disabled]="product.stock === 0"
     ></p-button>
+
+    {{product.price | currency}}
   </ng-template>
 </p-card>
 
-<p-toast></p-toast>
 
 

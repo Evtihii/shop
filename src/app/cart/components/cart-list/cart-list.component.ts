@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/product/models/product.model';
+import { ProductsInCart } from '../../models/products-in-cart.model';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -9,19 +9,24 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartListComponent implements OnInit {
   checked = true;
-  productsInCart: Product[] = []
-  constructor(private cart: CartService) { }
+  productsInCart: ProductsInCart[] = []
+  catSum: number = 0;
+  constructor(public cart: CartService) { }
 
   ngOnInit(): void {
-    this.cart.productsInCart?.subscribe(e => this.productsInCart = e)
+    this.cart.productsInCart$?.subscribe(e => this.productsInCart = e)
   }
 
   ngOnDestroy(): void {
-    this.cart.productsInCart?.unsubscribe();
+    this.cart.productsInCart$?.unsubscribe();
   }
 
   get productsInCartSum() {
     return this.productsInCart.length;
+  }
+
+  get totalCart() {
+    return this.cart.totalCost();
   }
 
 }

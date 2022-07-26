@@ -13,8 +13,8 @@ export interface Product {
 }
 
 export interface ProductRequest {
-    limit?: number;
-    products: Product[];
-    skip: number;
-    total: number;
+  limit?: number;
+  products: Product[];
+  skip: number;
+  total: number;
 }

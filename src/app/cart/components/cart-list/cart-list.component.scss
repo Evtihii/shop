@@ -1,0 +1,14 @@
+.cart {
+    position: absolute;
+    display: none;
+    left: 0;
+    top: calc(100% + 2px);
+}
+
+:host {
+    position: relative;
+}
+
+.visible {
+    display: block;
+}

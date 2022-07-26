@@ -1,0 +1,14 @@
+<td>
+  {{ product.product.title }}
+</td>
+<td class="flex">
+  <p-button label="-" (click)="removeOne()"></p-button>
+  {{ product.quantity }}
+  <p-button label="+" (click)="addOne()"></p-button>
+</td>
+<td>
+  {{ fullPrice | currency }}
+</td>
+<td>
+  <p-button (click)="deleteItem()" icon="pi pi-trash"></p-button>
+</td>

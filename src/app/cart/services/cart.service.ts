@@ -38,9 +38,17 @@ export class CartService {
   }
 
   totalCost() {
+    let all = 0;
     this.productsInCart$.pipe(take(1)).subscribe((productsInCart) => {
-      //productsInCart.reduce()
-    })
+      let initialValue = 0;
+      let sum = productsInCart.reduce(
+        (acc, curr) => acc + curr.quantity * curr.product.price,
+        initialValue
+      );
+      all = sum;
+    });
+
+    return all;
   }
 
   onQuantityIncrease(product: ProductsInCart) {
@@ -52,7 +60,9 @@ export class CartService {
   }
 
   onDeleteItem(product: ProductsInCart) {
-    this.productsInCart$.pipe(take(1)).subscribe((arr) => arr.splice(arr.indexOf(product), 1))
+    this.productsInCart$
+      .pipe(take(1))
+      .subscribe((arr) => arr.splice(arr.indexOf(product), 1));
   }
 
   totalCart() {

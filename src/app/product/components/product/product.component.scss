@@ -7,8 +7,13 @@
     height: 350px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 140%;
     background-color: rgba(0,0,0,.4);
+    transition: .3s;
+}
+
+.cardOnHover {
+    background-size: 150%;
 }
 
 .description {

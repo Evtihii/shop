@@ -20,7 +20,8 @@
   </ng-template>
   <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-          In total there are {{productsInCart ? productsInCart.length : 0 }} products.
+          There are {{productsInCart ? productsInCart.length : 0 }} products {{totalCart | currency}} in total in cart.
+          
       </div>
   </ng-template>
 </p-table>
@@ -28,3 +29,4 @@
 <ng-template #empty>
   <p-button label="Cart Empty"></p-button>
 </ng-template>
+

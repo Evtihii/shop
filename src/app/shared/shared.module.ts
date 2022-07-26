@@ -9,6 +9,8 @@ import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TableModule } from 'primeng/table';
+import { HiglightDirective } from './higlight.directive';
+//import { HighlighDirective } from './directives/highligh.directive';
 
 @NgModule({
   imports: [
@@ -20,9 +22,11 @@ import { TableModule } from 'primeng/table';
     ToggleButtonModule,
     ButtonModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
   ],
-  declarations: [],
+  declarations: [
+    HiglightDirective
+  ],
   exports: [
     CardModule,
     PaginatorModule,
@@ -31,7 +35,8 @@ import { TableModule } from 'primeng/table';
     ToggleButtonModule,
     ButtonModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    HiglightDirective
   ],
 })
 export class SharedModule {}

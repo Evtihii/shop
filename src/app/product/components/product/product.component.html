@@ -4,12 +4,12 @@
   styleClass="p-card-shadow"
 >
   <ng-template pTemplate="header">
-    <div class="image" style="background-image: url({{product.thumbnail}});"></div>
+    <div appHoverProduct class="image" style="background-image: url({{product.thumbnail}});"></div>
   </ng-template>
-  <p class="description">
+  <p class="description" appHiglight>
     {{ product.description }}
   </p>
-  <ng-template pTemplate="footer">
+  <ng-template pTemplate="footer" >
     <p-button
       label="Buy"
       icon="pi pi-shopping-cart"

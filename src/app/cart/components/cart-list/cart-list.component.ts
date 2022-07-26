@@ -10,7 +10,8 @@ import { CartService } from '../../services/cart.service';
 export class CartListComponent implements OnInit {
   checked = true;
   productsInCart: ProductsInCart[] = []
-  constructor(private cart: CartService) { }
+  catSum: number = 0;
+  constructor(public cart: CartService) { }
 
   ngOnInit(): void {
     this.cart.productsInCart$?.subscribe(e => this.productsInCart = e)
@@ -22,6 +23,10 @@ export class CartListComponent implements OnInit {
 
   get productsInCartSum() {
     return this.productsInCart.length;
+  }
+
+  get totalCart() {
+    return this.cart.totalCost();
   }
 
 }

@@ -1,10 +1,10 @@
 <td>
-  {{ product.product.title }}
+  <div class="cart-productTitle">{{ product.product.title }}</div>
 </td>
 <td class="flex">
-  <p-button label="-" (click)="removeOne()"></p-button>
-  {{ product.quantity }}
-  <p-button label="+" (click)="addOne()"></p-button>
+  <p-button label="-" (click)="removeOne()" styleClass="p-button-sm"></p-button>
+  <div class="quantity">{{ product.quantity }}</div>
+  <p-button label="+" (click)="addOne()" styleClass="p-button-sm"></p-button>
 </td>
 <td>
   {{ fullPrice | currency }}

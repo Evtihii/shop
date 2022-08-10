@@ -10,7 +10,6 @@ import { MenuModule } from 'primeng/menu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TableModule } from 'primeng/table';
 import { HiglightDirective } from './directives/higlight.directive';
-//import { HighlighDirective } from './directives/highligh.directive';
 
 @NgModule({
   imports: [

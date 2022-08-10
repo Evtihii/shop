@@ -1,32 +1,29 @@
-<p-toggleButton
-  *ngIf="productsInCartSum; else empty"
-  [(ngModel)]="checked"
-  onIcon="pi pi-shopping-cart"
-  offIcon="pi pi-times"
-  onLabel="Cart {{ productsInCartSum }}"
-  offLabel="Cart {{ productsInCartSum }}"
-></p-toggleButton>
+<p-toggleButton *ngIf="cart.totalQuantity; else empty" [(ngModel)]="checked" onIcon="pi pi-shopping-cart"
+  offIcon="pi pi-times" onLabel="Cart {{cart.totalQuantity}}" offLabel="Cart {{cart.totalQuantity}}"></p-toggleButton>
 
-<p-table  [ngClass]="{visible: !checked}" *ngIf="!checked" [value]="productsInCart" class="cart absolute"  responsiveLayout="scroll">
+<p-table [ngClass]="{visible: !checked}" *ngIf="!checked" [value]="productsInCart" class="cart absolute"
+  responsiveLayout="scroll">
   <ng-template pTemplate="header">
-      <tr>
-          <th>Title</th>
-          <th>Quantity</th>
-          <th>Price</th>
-      </tr>
+    <tr>
+      <th>Title</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Delete</th>
+    </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
-    <tr app-cart-item [product]="product"></tr>  
+    <tr app-cart-item [product]="product"></tr>
   </ng-template>
   <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">
-          There are {{productsInCart ? productsInCart.length : 0 }} products {{totalCart | currency}} in total in cart.
-          
-      </div>
+    <div class="flex align-items-center justify-content-between">
+      There are {{cart.totalQuantity}} product(s) {{cart.totalCost | currency}} in total in cart.
+    </div>
+    <div class="cart-clear flex">
+      <p-button icon="pi pi-remove" label="Clear cart" (click)="eraseCart()"></p-button>
+    </div>
   </ng-template>
 </p-table>
 
 <ng-template #empty>
   <p-button label="Cart Empty"></p-button>
 </ng-template>
-

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ProductsInCart } from '../../models/products-in-cart.model';
 
@@ -6,6 +6,7 @@ import { ProductsInCart } from '../../models/products-in-cart.model';
   selector: '[app-cart-item]',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartItemComponent implements OnInit {
   @Input() product!: ProductsInCart;
@@ -15,15 +16,15 @@ export class CartItemComponent implements OnInit {
   ngOnInit(): void {}
 
   addOne() {
-    this.cart.onQuantityIncrease(this.product);
+    this.cart.quantityIncrease(this.product);
   }
 
   removeOne() {
-    this.cart.onQuantityDecrease(this.product);
+    this.cart.quantityDecrease(this.product);
   }
 
   deleteItem() {
-    this.cart.onDeleteItem(this.product);
+    this.cart.removeProduct(this.product);
   }
 
   get fullPrice() {

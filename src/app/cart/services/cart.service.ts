@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { BehaviorSubject, filter, take } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { Product } from 'src/app/product/models/product.model';
 import { ProductsInCart } from '../models/products-in-cart.model';
 
@@ -13,14 +11,10 @@ export class CartService {
     ProductsInCart[]
   >([]);
 
-  cartItems: Product[] = [];
-
-  constructor() {}
 
   addToCart(product: Product) {
     this.productsInCart$.pipe(take(1)).subscribe((arr) => {
       let alreadyInCart = arr.filter((el) => el.product.id === product.id);
-
       if (!alreadyInCart.length) {
         this.productsInCart$.next([
           ...this.productsInCart$.value,
@@ -37,35 +31,49 @@ export class CartService {
     });
   }
 
-  totalCost() {
-    let all = 0;
-    this.productsInCart$.pipe(take(1)).subscribe((productsInCart) => {
-      let initialValue = 0;
-      let sum = productsInCart.reduce(
-        (acc, curr) => acc + curr.quantity * curr.product.price,
-        initialValue
-      );
-      all = sum;
-    });
-
-    return all;
-  }
-
-  onQuantityIncrease(product: ProductsInCart) {
+  quantityIncrease(product: ProductsInCart) {
     return product.quantity++;
   }
 
-  onQuantityDecrease(product: ProductsInCart) {
+  quantityDecrease(product: ProductsInCart) {
     return product.quantity--;
   }
 
-  onDeleteItem(product: ProductsInCart) {
+  removeProduct(product: ProductsInCart) {
     this.productsInCart$
       .pipe(take(1))
       .subscribe((arr) => arr.splice(arr.indexOf(product), 1));
   }
 
-  totalCart() {
+  cartProducts(): BehaviorSubject<ProductsInCart[]> {
     return this.productsInCart$;
   }
+
+  removeAllProducts(): void {
+    this.productsInCart$.next([])
+  }
+
+  isEmptyCart(): boolean {
+    return !!this.productsInCart$.getValue().length;
+  }
+
+  get totalCost(): number {
+    let sum = 0;
+    this.productsInCart$.pipe(take(1)).subscribe((productsInCart) => {
+      sum = productsInCart.reduce(
+        (acc, curr) => acc + curr.quantity * curr.product.price,
+        0
+      );
+    });
+    return sum;
+  }
+
+  get totalQuantity(): number {
+    let quantity = 0;
+    this.productsInCart$.pipe(take(1)).subscribe((products) => {
+      quantity = products.reduce((acc, curr) => acc + curr.quantity, 0)
+    })
+    return quantity;
+  }
+
 }

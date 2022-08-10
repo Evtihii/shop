@@ -1,0 +1,10 @@
+.quantity {
+    min-width: 45px;
+    text-align: center;
+}
+
+.cart {
+&-productTitle {
+    min-width: 100px;
+}
+}

@@ -10,6 +10,7 @@ import { MenuModule } from 'primeng/menu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TableModule } from 'primeng/table';
 import { HiglightDirective } from './directives/higlight.directive';
+import { ChoosedDirective } from './directives/choosed.directive';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { HiglightDirective } from './directives/higlight.directive';
     TableModule,
   ],
   declarations: [
-    HiglightDirective
+    HiglightDirective,
+    ChoosedDirective
   ],
   exports: [
     CardModule,
@@ -35,7 +37,8 @@ import { HiglightDirective } from './directives/higlight.directive';
     ButtonModule,
     BrowserAnimationsModule,
     TableModule,
-    HiglightDirective
+    HiglightDirective,
+    ChoosedDirective
   ],
 })
 export class SharedModule {}

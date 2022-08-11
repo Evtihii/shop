@@ -1,11 +1,12 @@
 import { Injectable, InjectionToken } from '@angular/core';
+import { GenIdService } from './gen-id.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneratorService {
 
-  constructor() { }
+  constructor(private generatorID: GenIdService) { }
 
   generate(length: number): string {
     let result = '';
@@ -16,6 +17,10 @@ export class GeneratorService {
         characters.length));
     }
     return result;
+  }
+
+  getNewID() {
+    return this.generatorID.genID();
   }
 }
 

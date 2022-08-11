@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { ConstantLiteral } from 'src/app/core/models/constant.model';
+import { ConstantLiteralToken } from 'src/app/core/services/constants.service';
+import { GeneratorToken } from 'src/app/core/services/generator.service';
+import { LocalStorageService, LocalStorageToken } from 'src/app/core/services/localStorage.service';
 import { Category } from './config';
 
 @Component({
@@ -13,7 +17,13 @@ export class FirstComponentComponent implements OnInit {
   category!: Category;
   isAvailable!: boolean;
   
-  constructor() { }
+  constructor(
+    @Optional() @Inject(ConstantLiteralToken) private constant: ConstantLiteral,
+    @Optional() @Inject(GeneratorToken) private generator: string,
+    @Optional() @Inject(LocalStorageToken) private localS: LocalStorageService
+  ) { 
+  
+  }
 
   ngOnInit(): void {
   }

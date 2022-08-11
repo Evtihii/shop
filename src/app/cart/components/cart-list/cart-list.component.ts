@@ -21,12 +21,7 @@ export class CartListComponent implements OnInit {
     this.cart.productsInCart$?.unsubscribe();
   }
 
-  get productsInCartSum() {
-    return this.productsInCart.length;
+  eraseCart() {
+    this.cart.removeAllProducts();
   }
-
-  get totalCart() {
-    return this.cart.totalCost();
-  }
-
 }

@@ -13,6 +13,7 @@ import { FrontPageComponent } from './pages/front-page/front-page.component';
 import { SharedModule } from './shared/shared.module';
 import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './product/products.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProductsModule } from './product/products.module';
     HttpClientModule,
     SharedModule,
     CartModule,
-    ProductsModule
+    ProductsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent],

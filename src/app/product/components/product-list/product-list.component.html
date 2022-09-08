@@ -1,7 +1,16 @@
 <div class="container">
+  <label>
+    Sort By:
+    <p-dropdown [options]="options" [(ngModel)]="order"></p-dropdown>
+  </label>
+  <label>
+    Reverse: <p-checkbox name="groupname" [binary]="true" [value]="reverse" [(ngModel)]="reverse"></p-checkbox>
+  </label>
+  
+  <p-divider></p-divider>
   <div class="product-list">
     <app-product appChoosed (buyAction)="addProductToCart($event)"
-      *ngFor="let product of products"
+      *ngFor="let product of products | orderByPipe : order : reverse"
       [product]="product"
     ></app-product>
   </div>

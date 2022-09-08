@@ -3,7 +3,7 @@ import { take } from 'rxjs';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Product } from 'src/app/product/models/product.model';
 import { ProductsService } from '../../services/products.service';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-list',
@@ -12,12 +12,24 @@ import {MessageService} from 'primeng/api';
 })
 export class ProductListComponent implements OnInit {
   products?: Product[];
-  constructor(private productService: ProductsService, private cart: CartService, private msg: MessageService) {}
+  order = 'title';
+  reverse = false;
+  options!: any;
+
+  constructor(private productService: ProductsService, private cart: CartService, private msg: MessageService) {
+    this.options = [
+      'title',
+      'price',
+      'stock',
+    ];
+  }
 
   ngOnInit(): void {
-    this.productService.getProducts().pipe(take(1)).subscribe((products: any) => { 
-      this.products = products.products; 
+    this.productService.getProducts().pipe(take(1)).subscribe((products: any) => {
+      this.products = products.products;
     });
+    this.order = 'title';
+
   }
 
   addProductToCart($event: Product): void {

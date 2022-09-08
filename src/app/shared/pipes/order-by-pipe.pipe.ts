@@ -10,13 +10,8 @@ export class OrderByPipePipe implements PipeTransform {
     if (!items) return [];
 
     if (key) items.sort((a:any, b:any) => a[key] > b[key] ? 1 : -1);
-    console.log(key)
-    //else items.sort((a, b) => a > b ? 1 : -1);
-
-    if (isAsc) {
-      console.log(items)
-      
-      items.reverse()};
+    
+    if (isAsc) items.reverse();
 
     return items;
   }
